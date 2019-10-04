@@ -7,7 +7,7 @@ The code is not expected to be used as-is, but modifications and testing need to
 In the case that you detect a bug or any other issue, please don't hesitate to report in the Issues section and/or mention it in the relevant slack channel:
 https://abm-teams.slack.com/.
 
-## Instalation Info
+## Installation Info
 The proposed implementation relies on usage of Python 3.6 or higher.
 For the environment to work, the usage of conda or miniconda is suggested.
 This helps to avoid messing up your pc's default python environment. 
