@@ -51,10 +51,14 @@ In general openai gym is used by the project. This either comes with the stable-
 pip install gym
 ```
 
-Once everything is installed, please download or clone the project and use it locally, with your editor of choice, from the rl_markets_code folder.
+Once everything is installed, please download or clone the project and use it locally, with your editor of choice, from the `rl_markets_code/` directory
+
+
+
+.
 
 ## Examples
-A notebook containing appropriate an appropritate example and explanations is found at rl_markets_code/example.ipynb.
+A notebook containing appropriate an appropritate example and explanations is found at `rl_markets_code/example.ipynb`.
 At a later stage the github will be updated with reinforcement learning examples relevant to the lectures of 14.10 and 21.10. 
 In the meantime you can start experiementing with the above. 
 
