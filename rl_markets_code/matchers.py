@@ -43,14 +43,20 @@ class Matcher:
 
 
 class RandomMatcher(Matcher):
-    def __init__(self):
+    def __init__(self, reward_on_reference=False):
         """
         A random matcher, which decides the deal price of a matched pair by sampling a uniform
         distribution bounded in [seller_ask, buyer_bid] range.
         The reward is calculated as the difference from cost or the difference to budget for
         sellers and buyers.
+        :param reward_on_reference: The parameter to use a different reward calculation.
+        If set to true the reward now becomes: offer - reservation price for, sellers
+        and: reservation price - offer, for buyers.
+        You may chose to use this reward scheme, but you have to justify why it is better than
+        the old!
         """
         super().__init__()
+        self.reward_on_reference = reward_on_reference
 
     def match(self,
               current_actions: dict,
@@ -105,8 +111,14 @@ class RandomMatcher(Matcher):
 
                 deal_price = random.uniform(considered_seller['offer'], considered_buyer[
                     'offer'])
-                rewards[considered_buyer['id']] = considered_buyer['offer'] - deal_price
-                rewards[considered_seller['id']] = deal_price - considered_seller['offer']
+                if self.reward_on_reference:
+                    rewards[considered_buyer['id']] = considered_buyer['res_price'] -\
+                                                      considered_buyer['offer']
+                    rewards[considered_seller['id']] = considered_seller['offer'] - \
+                                                       considered_seller['res_price']
+                else:
+                    rewards[considered_buyer['id']] = considered_buyer['offer'] - deal_price
+                    rewards[considered_seller['id']] = deal_price - considered_seller['offer']
                 matching = dict(Seller=considered_seller['id'], Buyer=considered_buyer['id'],
                                 time=env_time, deal_price=deal_price)
                 deal_history.append(matching)

@@ -105,3 +105,7 @@ venv.bak/
 
 #mac
 .DS_Store
+
+#idea
+rl_markets_code/.idea/
+
